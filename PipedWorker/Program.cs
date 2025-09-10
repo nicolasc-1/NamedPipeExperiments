@@ -20,7 +20,7 @@ try
         
         if (json != null)
         {
-            _ = JsonSerializer.Deserialize<BenchmarkPayload>(json);
+            var test = JsonSerializer.Deserialize<BenchmarkPayload>(json);
             // Console.WriteLine($"Received Payload: {payload?.Name}, {payload?.Timestamp}");
         }
         

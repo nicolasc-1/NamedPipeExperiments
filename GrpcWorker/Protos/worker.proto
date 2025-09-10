@@ -4,12 +4,6 @@ option csharp_namespace = "GrpcWorker";
 
 package worker;
 
-// The worker service definition.
-service Worker {
-  // Sends a benchmark payload and receives a benchmark payload in response.
-  rpc Work (BenchmarkPayload) returns (BenchmarkPayload);
-}
-
 // Represents a complex payload for benchmarking the connection.
 message BenchmarkPayload {
   string id = 1; // Guid as string
@@ -27,4 +21,19 @@ message NestedObject {
   int32 id = 1;
   string description = 2;
   double value = 3;
+}
+
+message ShutdownRequest {
+  int32 exit_code = 1;
+}
+
+message ShutdownResponse {
+  string message = 1;
+}
+
+// The worker service definition.
+service Worker {
+  // Sends a benchmark payload and receives a benchmark payload in response.
+  rpc Work (BenchmarkPayload) returns (BenchmarkPayload);
+  rpc Shutdown (ShutdownRequest) returns (ShutdownResponse);
 }

@@ -13,6 +13,7 @@ public class WorkerProcess
     private readonly int identity;
     private readonly int port;
     private readonly Thread workThread;
+    private Worker.WorkerClient client = null!;
 
     public WorkerProcess(int identity, int port)
     {
@@ -41,6 +42,7 @@ public class WorkerProcess
         Console.WriteLine($"Worker {this.identity} connected to gRPC server on port {this.port}");
         
         this.workThread.Start();
+        this.client = new Worker.WorkerClient(this.grpcChannel);
     }
     
     public void Join()
@@ -50,13 +52,15 @@ public class WorkerProcess
 
     public void Shutdown()
     {
+        this.client.ShutdownAsync(new ShutdownRequest
+        {
+            ExitCode = 0
+        });
         this.grpcChannel?.ShutdownAsync().Wait();
     }
     
     private void Work()
     {
-        var client = new Worker.WorkerClient(this.grpcChannel);
-        
         for (int j = 0; j < NumIterations; j++)
         {
             var randomData = Core.BenchmarkPayload.FromRandom();
@@ -87,8 +91,7 @@ public class WorkerProcess
                 BinaryData = Google.Protobuf.ByteString.CopyFrom(randomData.BinaryData)
             };
 
-            var result = client.WorkAsync(payload).ResponseAsync;
-            // var unwrapResult = result.Id;
+            var result = this.client.WorkAsync(payload).ResponseAsync;
         }
         
         Console.WriteLine($"Worker {this.identity} completed work.");

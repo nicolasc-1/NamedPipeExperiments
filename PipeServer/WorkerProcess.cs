@@ -86,7 +86,7 @@ public class WorkerProcess
 
             if (line != null)
             {
-                _ = JsonSerializer.Deserialize<BenchmarkPayload>(line);
+                var test = JsonSerializer.Deserialize<BenchmarkPayload>(line);
                 // Console.WriteLine($"Received {test?.Name} on worker {worker.Identity}");
                 numReceived++;
             }

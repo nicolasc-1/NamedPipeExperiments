@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using GrpcServer;
 
-const int numWorkers = 4;
+const int numWorkers = 2;
 const int startingPort = 5000;
 
-var workers = new List<WorkerProcess>(4);
+var workers = new List<WorkerProcess>(numWorkers);
 
 var stopwatch = Stopwatch.StartNew();
 for (int i = 0; i < numWorkers; i++)
