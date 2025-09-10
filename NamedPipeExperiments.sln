@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PipedWorker", "PipedWorker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{67811177-C003-4FB8-90CF-F08C13CD73D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcWorker", "GrpcWorker\GrpcWorker.csproj", "{EBC43A83-3EA2-47AC-B8C6-45DB26EBA423}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcServer", "GrpcServer\GrpcServer.csproj", "{46586B94-BDD9-4107-8E05-6AB6C0D0EE27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{67811177-C003-4FB8-90CF-F08C13CD73D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67811177-C003-4FB8-90CF-F08C13CD73D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67811177-C003-4FB8-90CF-F08C13CD73D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC43A83-3EA2-47AC-B8C6-45DB26EBA423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC43A83-3EA2-47AC-B8C6-45DB26EBA423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC43A83-3EA2-47AC-B8C6-45DB26EBA423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC43A83-3EA2-47AC-B8C6-45DB26EBA423}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46586B94-BDD9-4107-8E05-6AB6C0D0EE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46586B94-BDD9-4107-8E05-6AB6C0D0EE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46586B94-BDD9-4107-8E05-6AB6C0D0EE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46586B94-BDD9-4107-8E05-6AB6C0D0EE27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

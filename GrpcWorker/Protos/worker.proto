@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcWorker";
+
+package worker;
+
+// The worker service definition.
+service Worker {
+  // Sends a benchmark payload and receives a benchmark payload in response.
+  rpc Work (BenchmarkPayload) returns (BenchmarkPayload);
+}
+
+// Represents a complex payload for benchmarking the connection.
+message BenchmarkPayload {
+  string id = 1; // Guid as string
+  string name = 2;
+  string timestamp = 3; // DateTime as string
+  repeated int32 numbers = 4;
+  map<string, string> metadata = 5; // Dictionary<Guid, Guid> as map<string, string>
+  NestedObject details = 6;
+  repeated NestedObject nested_list = 7;
+  bytes binary_data = 8;
+}
+
+// Represents a nested object within the payload.
+message NestedObject {
+  int32 id = 1;
+  string description = 2;
+  double value = 3;
+}

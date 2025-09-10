@@ -52,8 +52,8 @@ public class WorkerProcess
         Console.WriteLine($"Worker {Identity} connected to pipes");
         
         // start the processing threads
-        SendThread.Start(this);
-        ReceiveThread.Start(this);
+        SendThread.Start();
+        ReceiveThread.Start();
     }
 
     public void Join()
@@ -62,13 +62,11 @@ public class WorkerProcess
         ReceiveThread.Join();
     }
     
-    void SendPayload(object? data)
+    void SendPayload()
     {
-        var worker = (WorkerProcess)data!;
-    
-        Console.WriteLine($"Sending payload on worker {worker.Identity}");
+        Console.WriteLine($"Sending payload on worker {Identity}");
         
-        using var writer = new StreamWriter(worker.Out, Encoding.UTF8);
+        using var writer = new StreamWriter(Out, Encoding.UTF8);
         writer.AutoFlush = true;
         for (int i = 0; i < NumIterations; i++)
         {
@@ -76,10 +74,9 @@ public class WorkerProcess
         }
     }
 
-    void ReceivePayload(object? data)
+    void ReceivePayload()
     {
-        var worker = (WorkerProcess)data!;
-        using var reader = new StreamReader(worker.In, Encoding.UTF8);
+        using var reader = new StreamReader(In, Encoding.UTF8);
 
         bool finished = false;
         int numReceived = 0;
@@ -97,7 +94,7 @@ public class WorkerProcess
             if (numReceived >= NumIterations)
             {
                 finished = true;
-                Console.WriteLine($"Worker {worker.Identity} received all {numReceived} payloads");
+                Console.WriteLine($"Worker {Identity} received all {numReceived} payloads");
             }
         }
     }
